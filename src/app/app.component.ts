@@ -1,4 +1,7 @@
+import { Http } from '@angular/http';
 import { Component } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
+
+  constructor(http: Http) {
+    (http as any).blaat();
+  }
 }

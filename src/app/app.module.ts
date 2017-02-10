@@ -1,9 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, ConnectionBackend, XHRBackend, Http } from '@angular/http';
 
 import { AppComponent } from './app.component';
+
+@Injectable()
+export class HttpService extends Http {
+  blaat() {
+    alert('Injected backend:' + this._backend);
+  }
+}
 
 @NgModule({
   declarations: [
@@ -14,7 +21,9 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    { provide: Http, useClass: HttpService }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
